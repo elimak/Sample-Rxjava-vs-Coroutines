@@ -12,3 +12,6 @@ The data is:
 There are 2 repositories / api / dao:
 - 1 supporting RxJava 
 - 1 supporting Flow / coroutines
+
+
+![demo](load_data_populate_db.gif)
