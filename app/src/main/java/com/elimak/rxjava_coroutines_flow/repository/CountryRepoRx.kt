@@ -23,15 +23,15 @@ class CountryRepoRx @Inject constructor(context: Context) : ICountryRepoRx {
         return api.getAllCountries()
             .flatMap { it ->
                 // delete all records
-                database.countryDao().deleteAllCountries().andThen(Flowable.just(it))
+                database.countryDaoRx().deleteAllCountries().andThen(Flowable.just(it))
             }
             .flatMap {
                 // insert newly loaded records
-                database.countryDao().insertAll(it).andThen(Flowable.just(it))
+                database.countryDaoRx().insertAll(it).andThen(Flowable.just(it))
             }
             .flatMap {
                 // fetch records from DB
-                database.countryDao().getAll()
+                database.countryDaoRx().getAll()
                     .toFlowable()
             }
     }
@@ -41,14 +41,14 @@ class CountryRepoRx @Inject constructor(context: Context) : ICountryRepoRx {
     // ------------ //
 
     override fun getCountryById(id: Int): Flowable<Country> {
-        return database.countryDao().getCountryById(id)
+        return database.countryDaoRx().getCountryById(id)
             .subscribeOn(Schedulers.io())
             .toFlowable()
     }
 
     override fun fetchAllCountries(force: Boolean) : Flowable<List<Country>> {
         // Using force will refresh the data from online
-        return database.countryDao().getAll()
+        return database.countryDaoRx().getAll()
             .subscribeOn(Schedulers.io())
             .toFlowable()
             .flatMap {

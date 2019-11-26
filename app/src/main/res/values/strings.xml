@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rxjava-coroutines-flow</string>
+    <string name="load_data_via_rxjava">Load data via RXjava</string>
+    <string name="load_data_via_coroutines">Load data via Coroutines</string>
 </resources>

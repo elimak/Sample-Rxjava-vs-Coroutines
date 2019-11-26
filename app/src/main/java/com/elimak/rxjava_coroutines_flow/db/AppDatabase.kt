@@ -5,13 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.elimak.rxjava_coroutines_flow.db.country.Country
+import com.elimak.rxjava_coroutines_flow.db.country.CountryDaoFlow
 import com.elimak.rxjava_coroutines_flow.db.country.CountryDaoRx
-
 
 @Database(entities = [Country::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun countryDao(): CountryDaoRx
+    abstract fun countryDaoRx(): CountryDaoRx
+    abstract fun countryDaoFlow(): CountryDaoFlow
 
     companion object {
 

@@ -22,10 +22,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewmodel.text}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="50dp"/>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/message"
+            android:visibility="@{viewmodel.loading? View.VISIBLE:View.GONE}"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:id="@+id/buttonA"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/load_data_via_rxjava"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/message"
+            android:onClick="@{() -> viewmodel.loadDataViaRx()}"/>
+
+        <Button
+            android:id="@+id/buttonB"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/load_data_via_coroutines"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/buttonA"
+            android:onClick="@{() -> viewmodel.loadDataViaCoroutines()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

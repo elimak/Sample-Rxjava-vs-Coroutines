@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,23 +19,23 @@ interface CountryDaoFlow {
      * @param country the user to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCountry(country: Country): Job
+    fun insertCountry(country: Country): Long
 
     /**
      * Insert all countries.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(list: List<Country>): Job
+    fun insertAll(list: List<Country>): List<Long>
 
     /**
      * Delete all countries.
      */
     @Query("DELETE FROM country_table")
-    fun deleteAllCountries(): Job
+    fun deleteAllCountries(): Int
 
     /*** Get all countries
      * @return all the country from the table
      */
     @Query("SELECT * from country_table ORDER BY uid ASC")
-    fun getAll(): Flow<List<Country>>
+    fun getAll(): List<Country>
 }
