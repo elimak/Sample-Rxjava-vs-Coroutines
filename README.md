@@ -5,9 +5,9 @@ The ViewModel calls the Repository to get the data.
 We are loading a list of countries from `https://restcountries.eu/`
 
 The data is: 
-1 - fetched from retrofit / api
-2 - stored into the DB (if previous records in the DB, then clear the DB first)
-3 - returned do that it can be consumed by the viewModel
+- 1 - fetched from retrofit / api
+- 2 - stored into the DB (if previous records in the DB, then clear the DB first)
+- 3 - returned do that it can be consumed by the viewModel
 
 
 There are 2 repositories / api / dao:
