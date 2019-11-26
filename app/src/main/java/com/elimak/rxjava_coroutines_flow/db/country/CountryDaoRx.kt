@@ -1,0 +1,42 @@
+package com.elimak.rxjava_coroutines_flow.db.country
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import io.reactivex.Completable
+import io.reactivex.Single
+
+@Dao
+interface CountryDaoRx {
+    /*** Get a country by id.
+     * @return the country from the table with a specific id.
+     */
+    @Query("SELECT * FROM country_table WHERE uid = :id")
+    fun getCountryById(id: Int): Single<Country>
+
+    /**
+     * Insert a country in the database. If the country already exists, replace it.
+     * @param country the user to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCountry(country: Country): Completable
+
+    /**
+     * Insert all countries.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(list: List<Country>): Completable
+
+    /**
+     * Delete all countries.
+     */
+    @Query("DELETE FROM country_table")
+    fun deleteAllCountries(): Completable
+
+    /*** Get all countries
+     * @return all the country from the table
+     */
+    @Query("SELECT * from country_table ORDER BY uid ASC")
+    fun getAll(): Single<List<Country>>
+}

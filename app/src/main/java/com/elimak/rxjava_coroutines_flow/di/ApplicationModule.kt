@@ -3,8 +3,12 @@ package com.elimak.rxjava_coroutines_flow.di
 import android.app.Application
 import android.content.Context
 import com.elimak.rxjava_coroutines_flow.App
-import com.elimak.rxjava_coroutines_flow.repository.IRepository
-import com.elimak.rxjava_coroutines_flow.repository.Repository
+import com.elimak.rxjava_coroutines_flow.api.IApiServicesFlow
+import com.elimak.rxjava_coroutines_flow.api.IApiServicesRx
+import com.elimak.rxjava_coroutines_flow.repository.CountryRepoFlow
+import com.elimak.rxjava_coroutines_flow.repository.ICountryRepoRx
+import com.elimak.rxjava_coroutines_flow.repository.CountryRepoRx
+import com.elimak.rxjava_coroutines_flow.repository.ICountryRepoFlow
 
 import dagger.Module
 import dagger.Provides
@@ -24,7 +28,23 @@ class ApplicationModule(private val baseApp: App) {
 
     @Provides
     @Singleton
-    protected fun provideRepository(): IRepository {
-        return Repository(baseApp, EmptyCoroutineContext)
+    protected fun provideCountryRepoRx(): ICountryRepoRx {
+        return CountryRepoRx(baseApp)
+    }
+
+    @Provides
+    @Singleton
+    protected fun provideCountryRepoFlow(): ICountryRepoFlow {
+        return CountryRepoFlow(baseApp, EmptyCoroutineContext)
+    }
+
+    @Provides
+    fun provideApiServiceRx(): IApiServicesRx {
+        return IApiServicesRx.create()
+    }
+
+    @Provides
+    fun provideApiServicesFlow(): IApiServicesFlow {
+        return IApiServicesFlow.create()
     }
 }
