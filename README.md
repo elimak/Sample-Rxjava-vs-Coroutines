@@ -2,6 +2,7 @@
 Basic sample to compare 2 different approaches for doing asynch business on Android. The app has a simple flow with data repository / room db and a viewModel connected via dagger (dependency injection) to the data model
 
 The ViewModel calls the Repository to get the data. 
+We are loading a list of countries from `https://restcountries.eu/`
 
 The data is: 
 1 - fetched from retrofit / api
@@ -13,5 +14,6 @@ There are 2 repositories / api / dao:
 - 1 supporting RxJava 
 - 1 supporting Flow / coroutines
 
+### small demo
 
-![demo](load_data_populate_db.gif)
+![demo](demo.gif)
